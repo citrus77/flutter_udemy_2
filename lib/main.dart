@@ -31,9 +31,11 @@ class MyHomePage extends StatelessWidget {
 
   Widget chart() {
     return Container(
+        width: double.infinity,
         child: Card(
-      child: Text('CHART!'),
-    ));
+          color: Colors.blue,
+          child: Text('CHART!'),
+        ));
   }
 
   Widget transactionList() {
@@ -62,10 +64,13 @@ class MyHomePage extends StatelessWidget {
           title: Text('Flutter App'),
         ),
         body: Center(
-          child: Column(children: <Widget>[
-            chart(),
-            transactionList(),
-          ]),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                chart(),
+                transactionList(),
+              ]),
         ));
   }
 }
