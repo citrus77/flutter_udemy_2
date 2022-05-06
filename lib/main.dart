@@ -7,16 +7,48 @@ import './models/transaction.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter App',
+      title: 'Personal Expenses',
+      theme: ThemeData(
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)
+              .copyWith(secondary: Colors.pinkAccent),
+          fontFamily: 'Fluid Sans',
+          textTheme: ThemeData.light().textTheme.copyWith(
+                headline6: TextStyle(
+                  fontFamily: 'Fluid Sans',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+          appBarTheme: AppBarTheme(
+            toolbarTextStyle: ThemeData.light()
+                .textTheme
+                .copyWith(
+                    headline6:
+                        TextStyle(fontFamily: 'Nokia Pure', fontSize: 20))
+                .bodyText2,
+            titleTextStyle: ThemeData.light()
+                .textTheme
+                .copyWith(
+                  headline6: TextStyle(
+                    fontFamily: 'Nokia Pure',
+                    fontSize: 20,
+                  ),
+                )
+                .headline6,
+          )),
       home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
+  MyHomePage({Key? key}) : super(key: key);
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -46,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     setState(() => _userTransactions.add(newTx));
-    throw 'Something went wrong';
+    throw 'something went wrong';
   }
 
   void _startAddNewTransaction(BuildContext ctx) {
@@ -66,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Container(
         width: double.infinity,
         child: Card(
-          color: Colors.blue,
+          color: Theme.of(context).primaryColor,
           child: Text('CHART!'),
         ));
   }
