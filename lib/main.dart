@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, duplicate_ignore
+
 import 'package:flutter/material.dart';
 
 import './models/transaction.dart';
@@ -123,6 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text('Flutter App'),
         actions: <Widget>[
           IconButton(
+            // ignore: prefer_const_constructors
             icon: Icon(
               Icons.add,
             ),

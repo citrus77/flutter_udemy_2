@@ -1,9 +1,9 @@
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:intl/intl.dart';
+// ignore_for_file: avoid_print, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
+import './chart_bar.dart';
 import '../models/transaction.dart';
 
 class Chart extends StatelessWidget {
@@ -40,6 +40,11 @@ class Chart extends StatelessWidget {
     );
   }
 
+  double get totalSpending {
+    return groupedTransactionValues.fold(
+        0.0, (sum, item) => sum + (item['amount'] as double));
+  }
+
   @override
   Widget build(BuildContext context) {
     print(groupedTransactionValues);
@@ -47,8 +52,17 @@ class Chart extends StatelessWidget {
       elevation: 6,
       margin: EdgeInsets.all(20),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: groupedTransactionValues
-            .map((data) => Text('${data['day']}: ${data['amount']}'))
+            .map(
+              (data) => ChartBar(
+                (data['day'] as String),
+                (data['amount'] as double),
+                totalSpending == 0.0
+                    ? 0.0
+                    : (data['amount'] as double) / totalSpending,
+              ),
+            )
             .toList(),
       ),
     );
